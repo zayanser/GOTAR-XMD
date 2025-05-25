@@ -1,6 +1,6 @@
-name: megalodon-md
+name: gotar-xmd
 services:
-  - name: megalodon-md-service
+  - name: gotar-xmd-service
     type: web
     ports:
       - 5000
