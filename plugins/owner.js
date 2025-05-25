@@ -10,8 +10,8 @@ cmd({
 }, 
 async (conn, mek, m, { from }) => {
     try {
-        const ownerNumber = 18494967948; // Fetch owner number from config
-        const ownerName = Gotar Tech;     // Fetch owner name from config
+        const ownerNumber = config.OWNER_NUMBER; // Fetch owner number from config
+        const ownerName = config.OWNER_NAME;     // Fetch owner name from config
 
         const vcard = 'BEGIN:VCARD\n' +
                       'VERSION:3.0\n' +
@@ -29,8 +29,8 @@ async (conn, mek, m, { from }) => {
 
         // Send the owner contact message with image and audio
         await conn.sendMessage(from, {
-            image: { url: 'https://files.catbox.moe/rful77.jpg' }, // Image URL from your request
-            caption: `╭━━〔 *𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗* 〕━━┈⊷
+            image: { url: 'https://files.catbox.moe/82b8gr.jpg' }, // Image URL from your request
+            caption: `╭━━〔 𝐆𝐎𝐓𝐀𝐑 𝐗𝐌𝐃 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• *Here is the owner details*
 ┃◈┃• *Name* - ${ownerName}
