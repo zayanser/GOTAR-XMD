@@ -1,8 +1,8 @@
 {
-  "name": "MEGALODON-MD",
-  "description": "Javascript WhatsApp bot made ʙʏ ᴅʏʙʏ ᴛᴇᴄʜ",
-  "logo": "https://files.catbox.moe/rful77.jpg",
-  "keywords": ["MEGALODON-MD"],
+  "name": "GOTAR-XMD",
+  "description": "Javascript WhatsApp bot made ɢᴏᴛᴀʀ ᴛᴇᴄʜ",
+  "logo": "https://files.catbox.moe/82b8gr.jpg",
+  "keywords": ["GOTAR-XMD"],
   "success_url": "/",
 
     "stack": "container",
@@ -16,7 +16,7 @@
     "STICKER_NAME": {
       "description": "type your sticker pack name.",
       "required": false,
-      "value": "MEGALODON-MD"
+      "value": "𝐆𝐎𝐓𝐀𝐑 𝐗𝐌𝐃"
     }, 
       
     "PREFIX": {
@@ -79,14 +79,14 @@
     "AUTO_STATUS_MSG": {
       "description": "Type custom message on status reply",
       "required": true,
-      "value": "*SEEN YOUR STATUS BY MEGALODON-MD 🖤*"
+      "value": "*SEEN YOUR STATUS BY 𝐆𝐎𝐓𝐀𝐑 𝐗𝐌𝐃 🖤*"
    
      }, 
     
     "OWNER_NAME": {
       "description": "Type Bot Owner Name.",
       "required": false,
-      "value": "ᴅʏʙʏ ᴛᴇᴄʜ"
+      "value": "YOUR NAME"
 }, 
 
     "OWNER_NUMBER": {
@@ -99,7 +99,7 @@
     "BOT_NAME": {
       "description": "Type here the bot name.",
       "required": false,
-      "value": "MEGALODON-MD"
+      "value": "𝐆𝐎𝐓𝐀𝐑 𝐗𝐌𝐃"
 
       }, 
 
@@ -132,13 +132,13 @@
     "MENU_IMAGE_URL": {
       "description": "add url for mention reply and menu if want.",
       "required": false,
-      "value": "https://files.catbox.moe/rful77.jpg"
+      "value": "https://files.catbox.moe/82b8gr.jpg"
     },
     
      "DESCRIPTION": {
       "description": "add caption for menu and other",
       "required": false,
-      "value": "> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴇɢᴀʟᴏᴅᴏɴ ᴍᴅ*"
+      "value": "> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢᴏᴛᴀʀ ᴛᴇᴄʜ*"
     },
 
       "DELETE_LINKS": {
