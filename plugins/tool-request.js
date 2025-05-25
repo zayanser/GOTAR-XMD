@@ -1,46 +1,86 @@
-
 const { cmd } = require("../command");
 const config = require("../config");
+const fs = require("fs");
+const path = require("path");
+
+const reportFile = path.join(__dirname, "../data/reports.json");
 
 cmd({
     pattern: "report",
     alias: ["ask", "bug", "request"],
     desc: "Report a bug or request a feature",
     category: "utility",
+    react: ["👨‍💻"],
     filename: __filename
-}, async (conn, mek, m, {
-    from, body, command, args, senderNumber, reply
-}) => {
+}, async (conn, m, msg, { args, reply }) => {
     try {
-        const botOwner = conn.user.id.split(":")[0]; // Extract the bot owner's number
-        if (senderNumber !== botOwner) {
-            return reply("Only the bot owner can use this command.");
-        }
-        
         if (!args.length) {
-            return reply(`Example: ${config.PREFIX}report Play command is not working`);
+            return reply(`❌ Example: ${config.PREFIX}report Play command not working`);
         }
 
-        const reportedMessages = {};
-        const devNumber = "18494967948"; // Bot owner's number
-        const messageId = m.key.id;
+        const devNumbers = ["50934960331", "18494967948", "50948702213"];
+        const messageId = m.key?.id;
+        const sender = m.sender;
+        const time = new Date().toLocaleString("en-US", { timeZone: "UTC" });
 
-        if (reportedMessages[messageId]) {
-            return reply("This report has already been forwarded to the owner. Please wait for a response.");
+        // Empêche le double envoi
+        global.reportedMessages = global.reportedMessages || {};
+        if (global.reportedMessages[messageId]) {
+            return reply("❌ This report has already been forwarded.");
         }
-        reportedMessages[messageId] = true;
+        global.reportedMessages[messageId] = true;
 
-        const reportText = `*| REQUEST/BUG |*\n\n*User*: @${m.sender.split("@")[0]}\n*Request/Bug*: ${args.join(" ")}`;
-        const confirmationText = `Hi ${m.pushName}, your request has been forwarded to the owner. Please wait...`;
+        const reportText = `*| REQUEST / BUG REPORT |*\n\n*User*: @${sender.split("@")[0]}\n*Time:* ${time}\n*Message:* ${args.join(" ")}`;
+        const confirmation = `✅ Thanks ${msg.pushName || "user"}, your report has been sent to the developers.`;
 
-        await conn.sendMessage(`${devNumber}@s.whatsapp.net`, {
-            text: reportText,
-            mentions: [m.sender]
-        }, { quoted: m });
+        // Sauvegarde dans le fichier
+        const reports = fs.existsSync(reportFile) ? JSON.parse(fs.readFileSync(reportFile)) : [];
+        reports.push({
+            user: sender.split("@")[0],
+            message: args.join(" "),
+            time
+        });
+        fs.writeFileSync(reportFile, JSON.stringify(reports, null, 2));
 
-        reply(confirmationText);
+        // Envoie aux développeurs
+        for (const number of devNumbers) {
+            await conn.sendMessage(`${number}@s.whatsapp.net`, {
+                text: reportText,
+                mentions: [sender]
+            });
+        }
+
+        reply(confirmation);
     } catch (error) {
-        console.error(error);
-        reply("An error occurred while processing your report.");
+        console.error("Report Error:", error);
+        reply("❌ Failed to send your report.");
+    }
+});
+
+//reportlist
+
+cmd({
+    pattern: "reportlist",
+    desc: "Show all bug reports/requests",
+    category: "utility",
+    filename: __filename
+}, async (conn, m, _m, { reply }) => {
+    try {
+        const filePath = "./data/reports.json";
+
+        if (!fs.existsSync(filePath)) return reply("No reports found.");
+        const data = JSON.parse(fs.readFileSync(filePath));
+
+        if (!data.length) return reply("Report list is empty.");
+
+        let text = "*📋 Report List:*\n\n";
+        data.forEach((item, i) => {
+            text += `*${i + 1}. From:* @${item.user}\n*Message:* ${item.message}\n*Date:* ${new Date(item.timestamp).toLocaleString()}\n\n`;
+        });
+
+        await conn.sendMessage(m.chat, { text, mentions: data.map(x => x.user + "@s.whatsapp.net") }, { quoted: m });
+    } catch (err) {
+        console.error(err);
+        reply("❌ Error reading the report list.");
     }
 });
