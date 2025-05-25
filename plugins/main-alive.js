@@ -17,26 +17,26 @@ async (conn, mek, m, { from, sender, reply }) => {
 ╭───〔 *🤖 STATUS* 〕───◉
 │✨ *Bot is Active & Online!*
 │
-│🧠 *Owner:* ${config.OWNER_NAME}
-│⚡ *Version:* 4.0.0
+│👨‍💻 *Owner:* ${config.OWNER_NAME}
+│⚡ *Version:* 1.0.0
 │📝 *Prefix:* [${config.PREFIX}]
 │📳 *Mode:* [${config.MODE}]
 │💾 *RAM:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB
 │🖥️ *Host:* ${os.hostname()}
 │⌛ *Uptime:* ${runtime(process.uptime())}
 ╰────────────────────◉
-> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴇɢᴀʟᴏᴅᴏɴ ᴍᴅ*}`;
+> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢᴏᴛᴀʀ ᴛᴇᴄʜ*}`;
 
         await conn.sendMessage(from, {
-            image: { url: `https://files.catbox.moe/rful77.jpg` },
+            image: { url: `https://files.catbox.moe/82b8gr.jpg` },
             caption: status,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 1000,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363372853772240@newsletter',
-                    newsletterName: '𝗠𝗘𝗚𝗔𝗟𝗢𝗗𝗢𝗡',
+                    newsletterJid: '120363401658098220@newsletter',
+                    newsletterName: '𝐆𝐎𝐓𝐀𝐑 𝐗𝐌𝐃',
                     serverMessageId: 143
                 }
             }
