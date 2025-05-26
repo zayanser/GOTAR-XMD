@@ -14,14 +14,28 @@ async (conn, mek, m, { from, reply }) => {
     const githubRepoURL = 'https://github.com/gotartech/GOTAR-XMD';
 
     try {
-        const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
-        const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
-        
-        if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
+        const match = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
+        if (!match) return reply("❌ Erreur : L'URL du repo est invalide.");
+
+        const [, username, repoName] = match;
+
+        const response = await fetch(`https://api.github.com/repos/${username}/${repoName}`, {
+            headers: {
+                'User-Agent': 'GOTAR-XMD'
+            }
+        });
+
+        if (response.status === 503) {
+            return reply("❌ GitHub est temporairement indisponible (503). Réessaie plus tard.");
+        }
+
+        if (!response.ok) {
+            return reply(`❌ Échec de récupération des infos du repo. Code: ${response.status}`);
+        }
+
         const repoData = await response.json();
 
-        // Format 1: Code Style
-        const style1 = `┌──────────────────────┐
+        const message = `┌──────────────────────┐
 │  💫 𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗 𝗥𝗘𝗣𝗢  💫  
 ├──────────────────────
 │ • Name: ${repoData.name}
@@ -33,15 +47,9 @@ async (conn, mek, m, { from, reply }) => {
 └──────────────────────┘
 > *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢᴏᴛᴀʀ ᴛᴇᴄʜ*`;
 
-      
-
-        const styles = [style1];
-        const selectedStyle = styles[Math.floor(Math.random() * styles.length)];
-
-        // Send image with repo info
         await conn.sendMessage(from, {
             image: { url: `https://files.catbox.moe/82b8gr.jpg` },
-            caption: selectedStyle,
+            caption: message,
             contextInfo: { 
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
@@ -54,9 +62,8 @@ async (conn, mek, m, { from, reply }) => {
             }
         }, { quoted: mek });
 
-        
     } catch (error) {
         console.error("Repo command error:", error);
-        reply(`❌ Error: ${error.message}`);
+        reply("❌ Une erreur est survenue lors de la récupération du dépôt.");
     }
 });
