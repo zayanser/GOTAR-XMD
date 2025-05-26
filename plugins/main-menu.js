@@ -60,23 +60,21 @@ async (conn, mek, m, { from, reply }) => {
 
     menuText += `\n`;
 
-    const imageUrl = 'https://files.catbox.moe/82b8gr.jpg';
-
     await conn.sendMessage(from, {
-      image: { url: imageUrl },
-      caption: menuText,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        externalAdReply: {
-          title: "𝐆𝐎𝐓𝐀𝐑-𝐗𝐌𝐃",
-          body: "ᴘᴏᴡᴇʀᴇᴅ ʙʏ ɢᴏᴛᴀʀ-ᴛᴇᴄʜ",
-          mediaType: 3,
-          renderLargerThumbnail: true,
-          sourceUrl: 'https://github.com/GOTAR-XMD/GOTAR-XMD'
-        }
-      }
-    }, { quoted: mek });
-
+            image: { url: `https://files.catbox.moe/82b8gr.jpg` },
+            caption: selectedStyle,
+            contextInfo: { 
+                mentionedJid: [m.sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363401658098220@newsletter',
+                    newsletterName: config.OWNER_NAME || '𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗',
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: mek }
+                           
   } catch (e) {
     console.error(e);
     reply(`❌ Error: ${e.message}`);
