@@ -75,7 +75,7 @@ function copyFolderSync(source, target) {
         const destPath = path.join(target, item);
 
         // Skip config.js and app.json
-        if (item === "config.js" || item === "app.json" || item === "package.json || item === "index.js") {
+        if (item === "config.js" || item === "app.json" || item === "package.json" || item === "index.js") {
             console.log(`Skipping ${item} to preserve custom settings.`);
             continue;
         }
