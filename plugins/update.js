@@ -19,17 +19,17 @@ cmd({
         await reply("🔍 Checking for GOTAR-XMD updates...");
 
         // Fetch the latest commit hash from GitHub
-        const { data: commitData } = await axios.get("https://api.github.com/repos//GOTAR-XMD/commits/main");
+        const { data: commitData } = await axios.get("https://api.github.com/repos/gotartech/GOTAR-XMD/commits/main");
         const latestCommitHash = commitData.sha;
 
         // Get the stored commit hash from the database
         const currentHash = await getCommitHash();
 
         if (latestCommitHash === currentHash) {
-            return reply("✅ Your GOTAR-XMD is already up-to-date!");
+            return reply("✅ Your GOTAR-XMD bot is already up-to-date!");
         }
 
-        await reply("GOTAR-XMD UPDATING WAIT PLS 👨‍💻...");
+        await reply("GOTAR XMD UPDATING WAIT PLS 👨‍💻...");
 
         // Download the latest code
         const zipPath = path.join(__dirname, "latest.zip");
@@ -75,7 +75,7 @@ function copyFolderSync(source, target) {
         const destPath = path.join(target, item);
 
         // Skip config.js and app.json
-        if (item === "config.js" || item === "app.json" || item === "package.json" || item === "index.js") {
+        if (item === "config.js" || item === "app.json" || item === "package.json") {
             console.log(`Skipping ${item} to preserve custom settings.`);
             continue;
         }
