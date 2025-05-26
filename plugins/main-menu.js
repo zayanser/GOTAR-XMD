@@ -25,21 +25,20 @@ async (conn, mek, m, { from, reply }) => {
       return `${h}h ${m}m ${s}s`;
     };
 
-    // En-tête du menu sans time ni pushwish
+    // Menu principal
     let menuText = `
 *╭══〘 𝐆𝐎𝐓𝐀𝐑-𝐗𝐌𝐃〙*
 *┃❍* *ᴜsᴇʀ* : @${m.sender.split("@")[0]}
 *┃❍* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
 *┃❍* *ᴍᴏᴅᴇ* : *${config.MODE}*
 *┃❍* *ᴘʀᴇғɪx* : [${config.PREFIX}]
-*┃❍* *ᴩʟᴜɢɪɴ* :  ${totalCommands}
+*┃❍* *ᴩʟᴜɢɪɴ* : ${totalCommands}
 *┃❍* *ᴅᴇᴠ* : *ɢᴏᴛᴀʀ-ᴛᴇᴄʜ*
-*┃❍* *ᴠᴇʀsɪᴏɴs* : *1.0.0*
+*┃❍* *ᴠᴇʀsɪᴏɴ* : *1.0.0*
 *╰════════════════⊷*
-
 `;
 
-    // Regroupement par catégorie
+    // Catégories et commandes
     let category = {};
     for (let cmd of commands) {
       if (!cmd.category) continue;
@@ -58,23 +57,25 @@ async (conn, mek, m, { from, reply }) => {
       menuText += `\n┗━━━━━━━━━━━━━━❍`;
     }
 
-    menuText += `\n`;
+    // Affecter à la variable caption
+    const selectedStyle = menuText;
 
+    // Envoyer l'image avec le menu
     await conn.sendMessage(from, {
-            image: { url: `https://files.catbox.moe/82b8gr.jpg` },
-            caption: selectedStyle,
-            contextInfo: { 
-                mentionedJid: [m.sender],
-                forwardingScore: 999,
-                isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363401658098220@newsletter',
-                    newsletterName: config.OWNER_NAME || '𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗',
-                    serverMessageId: 143
-                }
-            }
-        }, { quoted: mek }
-                           
+      image: { url: 'https://files.catbox.moe/82b8gr.jpg' },
+      caption: selectedStyle,
+      contextInfo: {
+        mentionedJid: [m.sender],
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363401658098220@newsletter',
+          newsletterName: config.OWNER_NAME || '𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗',
+          serverMessageId: 143
+        }
+      }
+    }, { quoted: mek });
+
   } catch (e) {
     console.error(e);
     reply(`❌ Error: ${e.message}`);
