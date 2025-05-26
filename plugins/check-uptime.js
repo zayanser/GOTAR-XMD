@@ -16,8 +16,8 @@ async (conn, mek, m, { from, reply }) => {
         const startTime = new Date(Date.now() - process.uptime() * 1000);
         
         
-        // Style 6: Retro Terminal
-        const style6 = `╔══════════════════════╗
+        // Style 1: Retro Terminal
+        const style1 = `╔══════════════════════╗
 ║   𝐆𝐎𝐓𝐀𝐑 𝐗𝐌𝐃 UPTIME    
 ╠══════════════════════
 ║  RUNTIME: ${uptime}
