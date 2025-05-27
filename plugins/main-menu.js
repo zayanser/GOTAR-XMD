@@ -27,15 +27,16 @@ async (conn, mek, m, { from, reply }) => {
 
     // Menu principal
     let menuText = `
-*╭══〘 𝐆𝐎𝐓𝐀𝐑-𝐗𝐌𝐃 〙═══*
+*╭══ 𝐆𝐎𝐓𝐀𝐑-𝐗𝐌𝐃 
 *┃❃* *ᴜsᴇʀ* : @${m.sender.split("@")[0]}
 *┃❃* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
 *┃❃* *ᴍᴏᴅᴇ* : *${config.MODE}*
-*┃❃* *ᴘʀᴇғɪx* : [${config.PREFIX}]
+*┃❃* *ᴘʀᴇғɪx* : *${config.PREFIX}*
 *┃❃* *ᴩʟᴜɢɪɴ* : ${totalCommands}
-*┃❃* *ᴅᴇᴠ* : *ɢᴏᴛᴀʀ-ᴛᴇᴄʜ*
-*┃❃* *ᴠᴇʀsɪᴏɴ* : *1.0.0*
+*┃❃* *ᴅᴇᴠ* : *ɢᴏᴛᴀʀ ᴛᴇᴄʜ*
+*┃❃* *ᴠᴇʀsɪᴏɴs* : *1.0.0*
 *╰════════════════⊷*
+
 `;
 
     // Catégories et commandes
@@ -48,13 +49,13 @@ async (conn, mek, m, { from, reply }) => {
 
     const keys = Object.keys(category).sort();
     for (let k of keys) {
-      menuText += `\n\n┌ ❏ 〤 *${k.toUpperCase()} MENU* 〤`;
+      menuText += `\n\n*╭─* ${k.toUpperCase()} MENU*`;
       const cmds = category[k].filter(c => c.pattern).sort((a, b) => a.pattern.localeCompare(b.pattern));
       cmds.forEach((cmd) => {
         const usage = cmd.pattern.split('|')[0];
         menuText += `\n├❃ \`${config.PREFIX}${usage}\``;
       });
-      menuText += `\n┗━━━━━━━━━━━━━━●`;
+      menuText += `\n*┕──────────────❒*`;
     }
 
     // Affecter à la variable caption
