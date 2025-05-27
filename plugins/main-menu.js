@@ -27,7 +27,7 @@ async (conn, mek, m, { from, reply }) => {
 
     // Menu principal
     let menuText = `
-*╭══ 𝐆𝐎𝐓𝐀𝐑-𝐗𝐌𝐃 
+*╭══ 𝐆𝐎𝐓𝐀𝐑-𝐗𝐌𝐃*
 *┃❃* *ᴜsᴇʀ* : @${m.sender.split("@")[0]}
 *┃❃* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
 *┃❃* *ᴍᴏᴅᴇ* : *${config.MODE}*
