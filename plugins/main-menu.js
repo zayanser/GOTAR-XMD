@@ -31,13 +31,13 @@ async (conn, mek, m, { from, reply }) => {
 *┃❃* *ᴜsᴇʀ* : @${m.sender.split("@")[0]}
 *┃❃* *ʀᴜɴᴛɪᴍᴇ* : ${uptime()}
 *┃❃* *ᴍᴏᴅᴇ* : *${config.MODE}*
-*┃❃* *ᴘʀᴇғɪx* : *${config.PREFIX}*
+*┃❃* *ᴘʀᴇғɪx* : [ ${config.PREFIX} ]
 *┃❃* *ᴩʟᴜɢɪɴ* : ${totalCommands}
-*┃❃* *ᴅᴇᴠ* : *ɢᴏᴛᴀʀ ᴛᴇᴄʜ*
-*┃❃* *ᴠᴇʀsɪᴏɴs* : *1.0.0*
-*╰════════════════⊷*
-
+*┃❃* *ᴅᴇᴠ* : *ɢᴏᴛᴀʀ-ᴛᴇᴄʜ*
+*┃❃* *ᴠᴇʀsɪᴏɴs* :
+*┕──────────────❒*
 `;
+
 
     // Catégories et commandes
     let category = {};
@@ -49,11 +49,11 @@ async (conn, mek, m, { from, reply }) => {
 
     const keys = Object.keys(category).sort();
     for (let k of keys) {
-      menuText += `\n\n*╭─* ${k.toUpperCase()} MENU*`;
+      menuText += `\n\n╭─*${k.toUpperCase()} MENU*`;
       const cmds = category[k].filter(c => c.pattern).sort((a, b) => a.pattern.localeCompare(b.pattern));
       cmds.forEach((cmd) => {
         const usage = cmd.pattern.split('|')[0];
-        menuText += `\n├❃ \`${config.PREFIX}${usage}\``;
+        menuText += `\n├➤ ${config.PREFIX}${usage}`;
       });
       menuText += `\n*┕──────────────❒*`;
     }
@@ -71,7 +71,7 @@ async (conn, mek, m, { from, reply }) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363401658098220@newsletter',
-          newsletterName: '𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗',
+          newsletterName: config.OWNER_NAME || '𝗚𝗢𝗧𝗔𝗥-𝗫𝗠𝗗',
           serverMessageId: 143
         }
       }
