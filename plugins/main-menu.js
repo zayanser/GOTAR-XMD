@@ -9,7 +9,7 @@ cmd({
   use: '.menu',
   desc: "Show all bot commands",
   category: "menu",
-  react: "🐍",
+  react: "⚡️",
   filename: __filename
 },
 async (conn, mek, m, { from, reply }) => {
@@ -63,7 +63,7 @@ async (conn, mek, m, { from, reply }) => {
 
     // Envoyer l'image avec le menu
     await conn.sendMessage(from, {
-      image: { url: 'https://files.catbox.moe/82b8gr.jpg' },
+      image: { url: 'https://files.catbox.moe/q0t3l2.jpg' },
       caption: selectedStyle,
       contextInfo: {
         mentionedJid: [m.sender],
