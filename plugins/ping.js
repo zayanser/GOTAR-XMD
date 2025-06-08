@@ -3,8 +3,8 @@ const { runtime } = require('../lib/functions');
 const config = require('../config');
 
 cmd({
-    pattern: "uptime",
-    alias: ["runtime", "up"],
+    pattern: "ping",
+    alias: ["speed", "test"],
     desc: "Show bot uptime with stylish formats",
     category: "main",
     react: "⏱️",
