@@ -20,7 +20,7 @@ async (conn, mek, m, { from, prefix, quoted, q, reply }) => {
 
         // Validate input
         if (!q) {
-            return await reply("Example : .Pair ‪8494967948‬");
+            return await reply("Example :.Pair 8494967948‬");
         }
 
         // Fetch pairing code
